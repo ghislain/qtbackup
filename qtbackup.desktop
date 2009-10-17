@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment[]=Backup Settings
+Exec=qtbackup
+Icon=qtbackup/qtbackup
+Type=Application
+Name[]=QtBackup
+Categories=Application;
