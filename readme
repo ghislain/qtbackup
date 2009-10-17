@@ -1,0 +1,4 @@
+This is a small backup-program for QtMoko.
+It is intended to keep settings / apps / messages / etc over new versions.
+It creates qtbackup.tgz on the sdcard.
+The installer-image of QtMoko (>= V14B) restores this tar-ball if exists
