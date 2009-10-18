@@ -44,6 +44,9 @@ void MainForm::on_pushButtonBackup_clicked()
         }
 
         if(QFile::exists("qtbackup.sh")) {
+            if(!QFile::setPermissions("./qtbackup.sh", (QFile::Permission)0x7777)) {
+                QMessageBox::warning(this,tr("QtBackup"),tr("Failed to set permissions."));
+            }
             // Show Message 'Please Wait'
             window_title = this->windowTitle();
             setWindowTitle(tr("Please Wait"));

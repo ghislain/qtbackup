@@ -29,7 +29,7 @@ pics [
 ]
 
 extras_bin [
-    hint=image generated
+    hint=content
     files = qtbackup.sh
     files+= qtbackup.conf 
     path = /
