@@ -1,6 +1,8 @@
 #include "MainForm.h"
 #include "ui_MainForm.h"
 
+#include <QWaitWidget>
+
 MainForm::MainForm(QWidget *parent, Qt::WFlags f) :
     QWidget(parent, f),
     ui(new Ui::MainForm)
@@ -29,6 +31,7 @@ void MainForm::on_pushButtonBackup_clicked()
 {
     QString window_title;
     QMessageBox msg_box;
+    QWaitWidget *waitWidget = new QWaitWidget(this);
     int exit_code;
 
     // Check if qtbackup.conf exists
@@ -47,13 +50,10 @@ void MainForm::on_pushButtonBackup_clicked()
             if(!QFile::setPermissions("./qtbackup.sh", (QFile::Permission)0x7777)) {
                 QMessageBox::warning(this,tr("QtBackup"),tr("Failed to set permissions."));
             }
-            // Show Message 'Please Wait'
-            window_title = this->windowTitle();
-            setWindowTitle(tr("Please Wait"));
+            waitWidget->show();
             // Execute script
             exit_code = QProcess::execute("./qtbackup.sh");
-            // Remove Message 'Please Wait'
-            setWindowTitle(window_title);
+            waitWidget->hide();
             // Show exit-status
             if (exit_code != 0) {
                 QMessageBox::warning(this,tr("QtBackup"),tr("Backup failed."));
